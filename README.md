@@ -21,7 +21,7 @@ python3 main.py
 
 https://github.com/asteen24/Math-a-la-Mode/assets/118776001/59f0313b-3a63-4e31-8478-13a7e949ca45
 
-This is just a sample of the "Quiz" page.
+This is a sample of the "Quiz" page.
 
 
 
@@ -31,7 +31,7 @@ This is just a sample of the "Quiz" page.
 https://github.com/asteen24/Math-a-la-Mode/assets/118776001/35e8f61e-d438-4213-b08d-3ee8bc1d4321
 
 
-This is just a sample of the "Wardrobe" page.
+This is a sample of the "Wardrobe" page.
 
 
 
@@ -41,5 +41,5 @@ This is just a sample of the "Wardrobe" page.
 https://github.com/asteen24/Math-a-la-Mode/assets/118776001/d41847d5-1d2c-402c-9312-c40496c7ad22
 
 
-This is just a sample of the "Statistics" page.
+This is a sample of the "Statistics" page.
 
