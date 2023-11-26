@@ -8,5 +8,10 @@ Need to install matplotlip and pygame using pip3.
 
 # How to Run
 
-cd to the right directory of this code and run the main function like so:
+cd to the right directory of this code on your computer and run the main function like so:
+
+(this example assumes that you have downloaded the code into your downloads file)
+cd downloads          
+cd Math-a-la-Mode-main
+python3 main.py     
 
