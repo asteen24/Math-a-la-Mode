@@ -5,3 +5,8 @@ I created this app to help kids learn their multiplication tables. The more ques
 
 Python3 is required to run this program.
 Need to install matplotlip and pygame using pip3.
+
+# How to Run
+
+cd to the right directory of this code and run the main function like so:
+
