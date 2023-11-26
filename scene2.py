@@ -120,19 +120,21 @@ class Scene2:
         return self.gemsstring
     
     def load_gems(self):
-        # Load gems from the text file if it exists, otherwise set it to 0
+    # Load gems from the text file if it exists, otherwise set it to 0
         if os.path.exists("gems.txt"):
             with open("gems.txt", "r") as file:
-                gems = float(file.read().strip())
-                self.gems = gems
-                x = datetime.datetime.now()
-                #data = ' '.join(file.read().split(","))
-                #if str(x) not in data:
-                if self.questions_answered>0: 
-                    accuracy = (self.questions_answered_correctly/self.questions_answered) * 100
+                content = file.read().strip()
+                if content:
+                    gems = float(content)
+                    self.gems = gems
+                    x = datetime.datetime.now()
+                    if self.questions_answered > 0:
+                        accuracy = (self.questions_answered_correctly / self.questions_answered) * 100
+                    else:
+                        accuracy = 0
+                    self.statistics_page.save_data(x.strftime("%x"), int(accuracy))
                 else:
-                    accuracy = 0
-                self.statistics_page.save_data(x.strftime("%x"), int(accuracy))
+                    self.gems = 0.00
         else:
             self.gems = 0.00
 
