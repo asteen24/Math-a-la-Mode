@@ -15,3 +15,8 @@ cd downloads
 cd Math-a-la-Mode-main
 python3 main.py     
 
+
+
+
+https://github.com/asteen24/Math-a-la-Mode/assets/118776001/59f0313b-3a63-4e31-8478-13a7e949ca45
+
