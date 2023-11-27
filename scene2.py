@@ -5,7 +5,7 @@ import sys
 import random
 import time
 from statistics_page import StatisticsPage
-import datetime
+from datetime import datetime
 
 
 
@@ -16,14 +16,21 @@ class Scene2:
         self.statistics_page = StatisticsPage(screen)
         self.screen = screen
         self.width, self.height = pygame.display.get_surface().get_size()
-        
-         
+
         self.questions_answered = 0
         self.questions_answered_correctly = 0
 
+        if self.questions_answered > 0:
+            self.accuracy = (self.questions_answered_correctly / self.questions_answered) * 100
+        else:
+            self.accuracy = 100
+        
+         
+        
+
 
         # Load gems from the text file
-        self.load_gems()
+        self.load_gems(self.accuracy)
 
 
         self.wrong = 0
@@ -119,7 +126,7 @@ class Scene2:
     def get_gems(self):
         return self.gemsstring
     
-    def load_gems(self):
+    def load_gems(self, accuracy):
     # Load gems from the text file if it exists, otherwise set it to 0
         if os.path.exists("gems.txt"):
             with open("gems.txt", "r") as file:
@@ -127,12 +134,13 @@ class Scene2:
                 if content:
                     gems = float(content)
                     self.gems = gems
-                    x = datetime.datetime.now()
+                   # x = datetime.datetime.now(datetime)
                     if self.questions_answered > 0:
-                        accuracy = (self.questions_answered_correctly / self.questions_answered) * 100
+                        self.accuracy = (self.questions_answered_correctly / self.questions_answered) * 100
+                        self.statistics_page.save_data(datetime.today().strftime("%m-%Y"), int(accuracy))
                     else:
-                        accuracy = 0
-                    self.statistics_page.save_data(x.strftime("%x"), int(accuracy))
+                        self.accuracy = 100
+                        self.statistics_page.save_data(datetime.today().strftime("%m-%Y"), int(accuracy))
                 else:
                     self.gems = 0.00
         else:
@@ -148,7 +156,7 @@ class Scene2:
         # Save the score (gems) to the text file
         with open("gems.txt", "w") as file:
             file.write(str(self.gems))
-        self.load_gems()
+        self.load_gems(self.accuracy)
 
 
     def check_button_pressed(self, point):
