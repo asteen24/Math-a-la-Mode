@@ -22,8 +22,8 @@ class StatisticsPage:
             with open("data.txt", "r") as file:
                 for line in file:
                     try:
-                        date_str, value = line.strip().split(",")
-                        date = datetime.strptime(date_str, "%x")
+                        date, value = line.strip().split(",")
+                        date = datetime.today().strftime("%m-%Y")
                         date_value_pairs.append((date, float(value)))
                     except ValueError as e:
                         print(f"Error loading data: {e}. Line: {line}")
@@ -49,7 +49,7 @@ class StatisticsPage:
 
     def draw_statistics(self):
         # Example line graph code
-        plt.figure(figsize=(3, 5))
+        plt.figure(figsize=(2.75, 5))
         plt.plot(self.dates, self.data, marker='o', linestyle='-')
         plt.xlabel("Date")
         plt.ylabel("Percent Accuracy")
@@ -63,7 +63,7 @@ class StatisticsPage:
 
         # Display the graph on the screen
         graph_image = pygame.image.load("data_history_graph.png")
-        self.screen.blit(graph_image, (37.5, 100))
+        self.screen.blit(graph_image, (50, 100))
 
 
         pygame.display.update()
