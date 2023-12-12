@@ -129,11 +129,11 @@ class Scene3:
             self.clothing_icons_next.draw()
             category_surface = self.category_font.render((self.category[self.category_number]), True, (255, 255, 255))
             self.screen.blit(category_surface, (260, 90))
-            
-            if self.enough_money == True:
+
+            if ((self.not_enough_money == False) and (self.enough_money == True)):
                 enough_money = self.gems_font.render("purchased :)", True, (230,177,197))
-                self.screen.blit(enough_money, (220,33))
-            if self.not_enough_money == True:
+                self.screen.blit(enough_money, (220,33))  
+            elif ((self.not_enough_money == True) and (self.enough_money == False)):
                 not_enough_money = self.gems_font.render("insufficient funds :(", True, (230,177,197))
                 self.screen.blit(not_enough_money, (180,15))
 
@@ -283,7 +283,7 @@ class Scene3:
         if float(self.scene2_instance.get_gems()) >= float(category_price[self.clothing_shown - 1]):
             try:
                 # Deduct gems and update scene 2's total
-                if show :
+                if show:
                     self.scene2_instance.set_gems(float(category_price[self.clothing_shown - 1]), 0)
                 else:
                     self.scene2_instance.set_gems(float(category_price[self.clothing_shown]), 0)
@@ -373,35 +373,40 @@ class Scene3:
                 if ((str(self.category[self.category_number])) == "Dresses"):
                     if ((self.clothing_shown-1) not in self.purchased_dresses):
                         self.buy_clothing(True, self.category_Dresses_price, self.dress_display1)
-                        self.purchased_dresses.append(self.clothing_shown-1)
+                        if self.enough_money == True:
+                            self.purchased_dresses.append(self.clothing_shown-1)
                     else:
                         self.show = True        
                         self.display_outfit(self.dress_display1)
                 elif ((str(self.category[self.category_number])) == "Shirts"):
                     if ((self.clothing_shown-1)not in self.purchased_shirts):
                         self.buy_clothing(True, self.category_Shirts_price, self.dress_display1)
-                        self.purchased_shirts.append(self.clothing_shown-1)
+                        if self.enough_money == True:
+                            self.purchased_shirts.append(self.clothing_shown-1)
                     else:
                         self.show = True        
                         self.display_outfit(self.dress_display1)
                 elif ((str(self.category[self.category_number])) == "Bottoms"):
                     if ((self.clothing_shown-1)not in self.purchased_bottoms):
                         self.buy_clothing(True, self.category_Bottoms_price, self.dress_display1)
-                        self.purchased_bottoms.append(self.clothing_shown-1)
+                        if self.enough_money == True:
+                            self.purchased_bottoms.append(self.clothing_shown-1)
                     else:
                         self.show = True        
                         self.display_outfit(self.dress_display1)
                 elif ((str(self.category[self.category_number])) == "Bags"):
                     if ((self.clothing_shown-1)not in self.purchased_bags):
                         self.buy_clothing(True, self.category_Bags_price, self.dress_display1)
-                        self.purchased_bags.append(self.clothing_shown - 1)
+                        if self.enough_money == True:
+                            self.purchased_bags.append(self.clothing_shown - 1)
                     else:
                         self.show = True        
                         self.display_outfit(self.dress_display1)
                 elif ((str(self.category[self.category_number])) == "Shoes"):
                     if ((self.clothing_shown-1) not in self.purchased_shoes):
                         self.buy_clothing(True, self.category_Shoes_price, self.dress_display1)
-                        self.purchased_shoes.append(self.clothing_shown - 1)
+                        if self.enough_money == True:
+                            self.purchased_shoes.append(self.clothing_shown - 1)
                     else:
                         self.show = True        
                         self.display_outfit(self.dress_display1)
@@ -412,7 +417,8 @@ class Scene3:
                 if ((str(self.category[self.category_number])) == "Dresses"):
                     if (self.clothing_shown not in self.purchased_dresses):
                         self.buy_clothing(False, self.category_Dresses_price, self.dress_display2)
-                        self.purchased_dresses.append(self.clothing_shown)
+                        if self.enough_money == True:
+                            self.purchased_dresses.append(self.clothing_shown)
                     else:
                         self.show = False        
                         self.display_outfit(self.dress_display2)
@@ -420,7 +426,8 @@ class Scene3:
                 elif ((str(self.category[self.category_number])) == "Shirts"):
                     if (self.clothing_shown not in self.purchased_shirts):
                         self.buy_clothing(False, self.category_Shirts_price, self.dress_display2)
-                        self.purchased_shirts.append(self.clothing_shown)
+                        if self.enough_money == True:
+                            self.purchased_shirts.append(self.clothing_shown)
                     else:
                         self.show = False        
                         self.display_outfit(self.dress_display2)
@@ -428,7 +435,8 @@ class Scene3:
                 elif ((str(self.category[self.category_number])) == "Bottoms"):
                     if (self.clothing_shown not in self.purchased_bottoms):
                         self.buy_clothing(False, self.category_Bottoms_price, self.dress_display2)
-                        self.purchased_bottoms.append(self.clothing_shown)
+                        if self.enough_money == True:
+                            self.purchased_bottoms.append(self.clothing_shown)
                     else:
                         self.show = False        
                         self.display_outfit(self.dress_display2)
@@ -436,7 +444,8 @@ class Scene3:
                 elif ((str(self.category[self.category_number])) == "Bags"):
                     if (self.clothing_shown not in self.purchased_bags):
                         self.buy_clothing(False, self.category_Bags_price, self.dress_display2)
-                        self.purchased_bags.append(self.clothing_shown)
+                        if self.enough_money == True:
+                            self.purchased_bags.append(self.clothing_shown)
                     else:
                         self.show = True        
                         self.display_outfit(self.dress_display2)
@@ -444,7 +453,8 @@ class Scene3:
                 elif ((str(self.category[self.category_number])) == "Shoes"):
                     if (self.clothing_shown not in self.purchased_shoes):
                         self.buy_clothing(False, self.category_Shoes_price, self.dress_display2)
-                        self.purchased_shoes.append(self.clothing_shown)
+                        if self.enough_money == True:
+                            self.purchased_shoes.append(self.clothing_shown)
                     else:
                         self.show = True        
                         self.display_outfit(self.dress_display2)
