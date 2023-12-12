@@ -191,9 +191,9 @@ class Scene2:
 
         if self.enter.check_collision(point):        
             if (str(self.answer) == str(self.var)):
-                self.questions_answered +=1
                 self.var = ""  # Reset self.var to an empty string
                 self.getquestion()
+                self.questions_answered +=1
                 #pygame.display.flip()
 
                 if self.wrong == 0:
@@ -201,13 +201,10 @@ class Scene2:
                     self.questions_answered_correctly +=1
                 elif self.wrong == 1:
                     self.set_gems(0,0.5)
-                    self.questions_answered_correctly -=0.25
                 elif self.wrong == 2:
                     self.set_gems(0,0.25)
-                    self.questions_answered_correctly -=0.25
                 elif self.wrong >= 3:
                     self.gems += 0
-                    self.questions_answered_correctly -=0.5
                 self.wrong = 0
             else:
                 self.wrong+=1
