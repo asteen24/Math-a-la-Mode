@@ -18,15 +18,27 @@ class StatisticsPage:
 
     def load_data(self):
         date_value_pairs = []  # List to store tuples of dates and values
+        unique_dates = set()  # Use a set to track unique dates
+
         if os.path.exists("data.txt"):
-            with open("data.txt", "r") as file:
-                for line in file:
-                    try:
-                        date, value = line.strip().split(",")
-                        date = datetime.today().strftime("%m-%Y")
-                        date_value_pairs.append((date, float(value)))
-                    except ValueError as e:
-                        print(f"Error loading data: {e}. Line: {line}")
+                with open("data.txt", "r") as file:
+                    for line in file:
+                        try:
+                            # Split the line into date and value
+                            parts = line.strip().split(",")
+                            
+                            # Check if the line has the expected number of values
+                            if len(parts) == 2:
+                                date, value = parts
+                                
+                                # Check if the date is already in the set
+                                if date not in unique_dates:
+                                    unique_dates.add(date)
+                                    date_value_pairs.append((date, float(value)))
+                            else:
+                                print(f"Ignoring line: {line.strip()} - does not have 2 values.")
+                        except ValueError as e:
+                            print(f"Error loading data: {e}. Line: {line}")
 
 
         # Unpack date_value_pairs into separate lists
@@ -37,8 +49,6 @@ class StatisticsPage:
         self.dates = list(dates)
         self.data = list(data)
 
-
-
     def save_data(self, date, value):
         self.dates.append(date)
         self.data.append(value)
@@ -48,9 +58,14 @@ class StatisticsPage:
 
 
     def draw_statistics(self):
-        # Example line graph code
+        # Create a single figure
         plt.figure(figsize=(2.75, 5))
+
+
+        # Plot the data
         plt.plot(self.dates, self.data, marker='o', linestyle='-')
+        
+        # Customize the plot
         plt.xlabel("Date")
         plt.ylabel("Percent Accuracy")
         plt.title("Percent Accuracy Over Time")
