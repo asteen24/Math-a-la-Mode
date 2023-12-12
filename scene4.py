@@ -11,7 +11,7 @@ class Scene4:
         self.width, self.height= pygame.display.get_surface().get_size()
 
         # Create the back button
-        self.back_button = Button(screen, "<–", 50, 50, 50, 50, (228,128,152), font_size=35, type="circle") 
+        self.back_button = Button(screen, "<--", 50, 50, 50, 50, (228,128,152), font_size=35, type="circle") 
 
 
     def draw_scene(self):
@@ -19,7 +19,7 @@ class Scene4:
         self.screen.blit(graphimg, (0,-100))
 
         self.back_button.draw()
-
+        self.statistics_page.load_data()
         self.statistics_page.draw_statistics()
 
         
