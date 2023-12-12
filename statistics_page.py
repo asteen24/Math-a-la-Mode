@@ -80,5 +80,5 @@ class StatisticsPage:
         graph_image = pygame.image.load("data_history_graph.png")
         self.screen.blit(graph_image, (50, 100))
 
-
+        plt.close()
         pygame.display.update()
